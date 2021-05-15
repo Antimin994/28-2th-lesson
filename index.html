@@ -63,7 +63,15 @@
 
   <script>
     let inputList = document.querySelectorAll('input');
+    let str = '';
 
+    if (navigator.cookieEnabled === false) {
+      alert("Cookies отключены!");
+    }
+    console.log(navigator.cookieEnabled);
+    if (!document.cookie) {
+      document.cookie = "card=15615816816";
+    }
 
     for (let i = 0; i < inputList.length; i++) {
 
@@ -76,8 +84,17 @@
         }
         key == 8 ? this.previousElementSibling.focus() : this.nextElementSibling.focus();
 
+        str += event.target.value;
+        console.log(str);
+        console.log(str.length);
+        if (str.length == 12) {
+          document.cookie = "card=" + str;
+          str = '';
+           }
+        console.log('cookie-->', document.cookie);
       })
     }
+
 
   </script>
 </body>
